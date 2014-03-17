@@ -1,4 +1,4 @@
-package com.acme.bankapp;
+package com.acme.bankapp.domain.bank;
 
 public interface Account {
 	void deposit( long amount );

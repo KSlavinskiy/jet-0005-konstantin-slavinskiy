@@ -4,6 +4,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import com.acme.bankapp.domain.bank.Bank;
+import com.acme.bankapp.domain.bank.Client;
+import com.acme.bankapp.domain.bank.Gender;
 import com.acme.bankapp.util.ClientNotFoundCustException;
 import com.acme.bankapp.util.MoneyFormatter;
 import com.acme.bankapp.util.OperationType;

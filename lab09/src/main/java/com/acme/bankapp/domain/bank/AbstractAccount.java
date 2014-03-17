@@ -1,4 +1,5 @@
-package com.acme.bankapp;
+package com.acme.bankapp.domain.bank;
+
 
 public class AbstractAccount implements Account {
 	

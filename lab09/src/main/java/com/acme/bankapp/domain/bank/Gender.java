@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.acme.bankapp;
+package com.acme.bankapp.domain.bank;
 
 /**
  * @author Konstantin

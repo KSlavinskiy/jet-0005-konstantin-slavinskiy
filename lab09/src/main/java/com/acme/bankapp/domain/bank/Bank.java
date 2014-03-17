@@ -1,12 +1,13 @@
-package com.acme.bankapp;
+package com.acme.bankapp.domain.bank;
 
 import java.util.TreeMap;
+
 
 public class Bank {
 	
 	private TreeMap<String, Client> clients;
 	
-	Bank() {
+	public Bank() {
 		
         System.out.println( "Bank started!" );
     	System.out.println();
