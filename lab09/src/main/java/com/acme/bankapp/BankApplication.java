@@ -19,6 +19,8 @@ public class BankApplication
 {
     public static void main( String[] args ) {
     	
+    	///// Testing lab09 Task1 /////
+    	
         Bank bank = new Bank();
         bank.addClient( new Client( "01","01",   -1001 ) ); // Client( String clientId, String account, long moneyOnAcc )
         bank.addClient( new Client( "02","02",   12000 ) );
@@ -45,6 +47,22 @@ public class BankApplication
         
         System.out.println("Modified bank\n");
         BankApplication.printBalance( bank );
+        
+    	///// Testing lab09 Task1 /////
+   //---------------------------------------------------------//     
+    	///// Testing lab09 Task2 /////
+        
+        Client cl = new Client( "03","03", 0, Gender.FEMALE, "Li", "Qwan Gon" );
+        System.out.println( cl.getClientSalutation() );
+        
+        cl = new Client( "04","04", 0, Gender.MALE, "Chon", "Do Kwan" );
+        System.out.println( cl.getClientSalutation() );
+        
+        cl = new Client( "04","04", 0, Gender.UNCERTAIN, "Xij", "Kha Luin" );
+        System.out.println( cl.getClientSalutation() );
+       
+    	///// Testing lab09 Task2 /////
+
         
     }
     
