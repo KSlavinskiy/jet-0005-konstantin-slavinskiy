@@ -1,15 +1,15 @@
 package com.acme.bankapp;
 
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+//import java.util.Map;
+//import java.util.Set;
+//import java.util.TreeMap;
 
 import com.acme.bankapp.domain.bank.Bank;
 import com.acme.bankapp.domain.bank.Client;
 import com.acme.bankapp.domain.bank.Gender;
 import com.acme.bankapp.service.bank.BankService;
 import com.acme.bankapp.util.ClientNotFoundCustException;
-import com.acme.bankapp.util.MoneyFormatter;
+//import com.acme.bankapp.util.MoneyFormatter;
 import com.acme.bankapp.util.OperationType;
 import com.acme.bankapp.util.UnrecAccOpCustException;
 
@@ -35,12 +35,15 @@ public class BankApplication
 //        BankService.addClient( bank, new Client( "07","07",    2414 ) );
 //        BankService.addClient( bank, new Client( "08","08",    3241 ) );
         
-        BankApplication.printBalance( bank );
+    	///// Testing lab09 Task3 /////
+        BankService.printBalance( bank );
+    	///// Testing lab09 Task3 /////
+
         
         try {
-        	modifyBank ( bank, "01", 1, OperationType.Withdrawal ); 
+        	BankService.modifyBank ( bank, "01", 1, OperationType.Withdrawal ); 
         	//modifyBank ( bank, "10", -1, OperationType.Withdrawal ); 
-        	modifyBank ( bank, "02", 1, OperationType.Deposit ); 
+        	BankService.modifyBank ( bank, "02", 1, OperationType.Deposit ); 
         	//modifyBank ( bank, "01", 1, OperationType.Credit ); 
         	
         } catch ( ClientNotFoundCustException e ) {
@@ -50,7 +53,7 @@ public class BankApplication
         }
         
         System.out.println("Modified bank\n");
-        BankApplication.printBalance( bank );
+        BankService.printBalance( bank );
         
     	///// Testing lab09 Task1 /////
    //---------------------------------------------------------//     
@@ -70,42 +73,5 @@ public class BankApplication
         
     }
     
-    static void printBalance( Bank bank ) {
-
-    	Set< Map.Entry <String, Client> > tm = bank.getClients().entrySet();
-    	for ( Map.Entry <String, Client> me : tm ) {
-        	System.out.println( "Client key: " + me.getKey() ); 
-        	System.out.println( "Client id: " + me.getValue().getClientId() ); 
-        	System.out.println( "Client account: " + me.getValue().getClientAccount().getAccount() ); 
-         	//printing the balance
-        	System.out.println( "Client balance: " + 
-        			new MoneyFormatter(me.getValue().getClientAccount().getBalance()).formattedMoney); 
-        	System.out.println();
-
-    	}
-    	System.out.println();
-    }
-    
-    static void modifyBank ( Bank bank, String clientId, long moneyAmount, OperationType operationType ) 
-    throws UnrecAccOpCustException, ClientNotFoundCustException {
-    	
-    	TreeMap<String, Client> clients = bank.getClients();
-    	Client cl = clients.get(clientId);
-    	if( cl == null) 
-			throw new ClientNotFoundCustException();
-    	
-    	switch (operationType) {
-    	
-    		case Deposit:
-    			cl.getClientAccount().deposit(moneyAmount);
-    			return;
-    		case Withdrawal:
-    			cl.getClientAccount().withdraw(moneyAmount);
-    			return;
-    		default:
-    			throw new UnrecAccOpCustException();
-    	
-    	}
-    }
 }
 
