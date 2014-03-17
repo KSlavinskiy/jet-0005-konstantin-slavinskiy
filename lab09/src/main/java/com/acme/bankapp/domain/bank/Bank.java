@@ -20,8 +20,4 @@ public class Bank {
 		return clients;
 	}
 	
-	public void addClient( Client client) {
-		clients.put(client.getClientId(), client );
-	}
-	
 }

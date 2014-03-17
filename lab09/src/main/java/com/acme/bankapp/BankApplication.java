@@ -7,6 +7,7 @@ import java.util.TreeMap;
 import com.acme.bankapp.domain.bank.Bank;
 import com.acme.bankapp.domain.bank.Client;
 import com.acme.bankapp.domain.bank.Gender;
+import com.acme.bankapp.service.bank.BankService;
 import com.acme.bankapp.util.ClientNotFoundCustException;
 import com.acme.bankapp.util.MoneyFormatter;
 import com.acme.bankapp.util.OperationType;
@@ -25,14 +26,14 @@ public class BankApplication
     	///// Testing lab09 Task1 /////
     	
         Bank bank = new Bank();
-        bank.addClient( new Client( "01","01",   -1001 ) ); // Client( String clientId, String account, long moneyOnAcc )
-        bank.addClient( new Client( "02","02",   12000 ) );
-//        bank.addClient( new Client( "03","03",       0 ) );
-//        bank.addClient( new Client( "04","04",   -5010 ) );
-//        bank.addClient( new Client( "05","05",     -12 ) );
-//        bank.addClient( new Client( "06","06", 1234501 ) );
-//        bank.addClient( new Client( "07","07",    2414 ) );
-//        bank.addClient( new Client( "08","08",    3241 ) );
+        BankService.addClient( bank, new Client( "01","01",   -1001 ) ); // Client( String clientId, String account, long moneyOnAcc )
+        BankService.addClient( bank, new Client( "02","02",   12000 ) );
+//        BankService.addClient( bank, new Client( "03","03",       0 ) );
+//        BankService.addClient( bank, new Client( "04","04",   -5010 ) );
+//        BankService.addClient( bank, new Client( "05","05",     -12 ) );
+//        BankService.addClient( bank, new Client( "06","06", 1234501 ) );
+//        BankService.addClient( bank, new Client( "07","07",    2414 ) );
+//        BankService.addClient( bank, new Client( "08","08",    3241 ) );
         
         BankApplication.printBalance( bank );
         
