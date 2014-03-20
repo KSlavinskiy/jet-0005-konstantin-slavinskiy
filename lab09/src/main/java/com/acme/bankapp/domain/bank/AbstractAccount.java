@@ -1,32 +1,24 @@
 package com.acme.bankapp.domain.bank;
 
 
-public class AbstractAccount implements Account {
+abstract public class AbstractAccount implements Account {
 	
 	private String account;
-	private long balance;
+	protected long balance;
+	
+	// abstract methods
+	abstract public long getBalance();
 	
 	public void deposit( long amount ) {
 		this.balance += amount;
 	}
 	
-	public void withdraw (long amount) {
-		this.balance -= amount;
-	}
-
 	public String getAccount() {
 		return account;
 	}
 
 	public void setAccount(String account) {
 		this.account = account;
-	}
-
-	/**
-	 * @return the balance
-	 */
-	public long getBalance() {
-		return balance;
 	}
 
 	/**

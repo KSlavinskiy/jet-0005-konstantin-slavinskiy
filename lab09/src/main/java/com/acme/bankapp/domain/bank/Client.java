@@ -1,17 +1,14 @@
 package com.acme.bankapp.domain.bank;
 
-
-//import java.util.TreeMap;
-
-//import com.acme.bankapp.util.ClientNotFoundCustException;
-//import com.acme.bankapp.util.OperationType;
-//import com.acme.bankapp.util.UnrecAccOpCustException;
+import com.acme.bankapp.util.AccountType;
 
 public class Client {
 	
 	private String clientId;
 	private AbstractAccount clientAccount;
-	private long clientBalance;
+	
+	// a possible future use as a sum of all account balances (if there are many)
+	//private long clientBalance;
 	
 	private Gender gender;	
 	private String clientFirstName;
@@ -19,37 +16,36 @@ public class Client {
 //	private String clientDescription;
 //	private String clientAddress;
 	
-	public Client( String clientId, String account, long moneyOnAcc ) {
-
-		this.clientId = clientId;
-
-		this.clientAccount = new AbstractAccount() ;
-		this.clientAccount.setAccount(account);
-		this.clientAccount.deposit(moneyOnAcc);
-		
-		// a possible future use as a sum of all account balances (if there are many)
-		//this.setClientBalance(clientBalance);
-		
-	}
-
 	public Client( 
 			String clientId, 
-			String account, 
-			long moneyOnAcc,
 			Gender gender, 
 			String clientFirstName, 
 			String clientLastName  ) {
-
+		
 		this.clientId = clientId;
-
-		this.clientAccount = new AbstractAccount() ;
-		this.clientAccount.setAccount(account);
-		this.clientAccount.deposit(moneyOnAcc);
-
 		this.gender = gender; 
 		this.clientFirstName = clientFirstName; 
 		this.clientLastName = clientLastName; 
 		
+	}
+	
+	public void createAccount ( String account, AccountType accountType, long overdraft ) {
+		
+		if (accountType == AccountType.SAVINGS) {
+			this.clientAccount = new SavingsAccount() ;
+		}
+		else if(accountType == AccountType.CHECKING) {
+			this.clientAccount = new CheckingAccount();
+			( (CheckingAccount) this.clientAccount ).setOverdraft(overdraft);
+		}
+
+		this.clientAccount.setAccount(account);
+
+	}
+	
+	public void setInitialBalance(long moneyOnAcc) {
+		this.clientAccount.setBalance(moneyOnAcc);
+
 	}
 	
 	
@@ -118,16 +114,4 @@ public class Client {
 	public void setClientAccount(AbstractAccount clientAccount) {
 		this.clientAccount = clientAccount;
 	}
-
-
-	public long getClientBalance() {
-		return clientBalance;
-	}
-
-
-	public void setClientBalance(long clientBalance) {
-		this.clientBalance = clientBalance;
-	}
-
-	
 }
